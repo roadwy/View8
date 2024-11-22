@@ -12,7 +12,7 @@ def set_repeat_line_flag(flag):
 
 
 def get_next_line(file):
-    with open(file) as f:
+    with open(file, errors="replace") as f:
         for line in f:
             line = line.strip()
             if not line:
