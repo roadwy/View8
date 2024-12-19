@@ -149,18 +149,20 @@ def parse_register_count(line):
     return int(parse("Register count {}", line)[0])
 
 
-def parse_address(line):
-    return parse("{}: [{}] in {}", line)[0]
+def parse_start_position(line):
+    return parse("- start position: {}", line)[0]
 
 
 def parse_shared_function_info(lines, name, declarer=None):
     sfi = SharedFunctionInfo()
     sfi.declarer = declarer
     sfi.name = 'func_unknown'
-    address = ""
     while (line := next(lines)) not in ("End SharedFunctionInfo", None):
         if "- kind: " in line:
             sfi.kind = parse("- kind: {}", line)[0]
+        if "- start position: " in line:
+            start_position = parse_start_position(line)
+            sfi.name = f'func_{(name or "unknown")}_{start_position}'
         if "Parameter count" in line:
             sfi.argument_count = parse_parameter_count(line)
         elif "Register count" in line:
@@ -171,9 +173,6 @@ def parse_shared_function_info(lines, name, declarer=None):
             sfi.exception_table = parse_handler_table(line, lines)
         elif "@    0 : " in line:
             sfi.code = parse_bytecode(line, lines)
-        elif "[SharedFunctionInfo]" in line or "[BytecodeArray]" in line:
-            address = parse_address(line)
-            sfi.name = f'func_{(name or "unknown")}_{address}'
 
     all_functions[sfi.name] = sfi
 
