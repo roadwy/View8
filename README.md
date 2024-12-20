@@ -102,6 +102,8 @@ The v8 version of a `.jsc` file can be found using <https://j4k0xb.github.io/v8-
 
 6. Compile the [disassembler](./Disassembler/v8dasm.cpp):
 
+    (For very old v8 versions, [v8dasm_legacy.cpp](./Disassembler/v8dasm_legacy.cpp) might be needed instead).
+
     - For **Node**:
 
         ```sh
