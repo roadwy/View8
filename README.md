@@ -53,13 +53,22 @@
     <li><code>-f</code>: Retrieves a file and returns its version.</li>
 </ul>
 
+### Get V8 Version
+
+The v8 version of a `.jsc` file can be found using one of the following methods:
+
+- VersionDetector.exe
+- <https://j4k0xb.github.io/v8-version-analyzer>
+- If the Node.js binary is available: `./path_to_node -p process.versions.v8`
+- If the Electron binary is available:
+      - Linux/Mac: `ELECTRON_RUN_AS_NODE=1 ./path_to_electron_app -p process.versions.v8`
+      - Windows: `set ELECTRON_RUN_AS_NODE=1 && path_to_electron_app -p process.versions.v8`
+
+Sometimes there isn't a matching v8 version because it has been edited. In this case, just select the closest one before.
+
 ### Building The Disassembler
 
 Guide/disassembler/patch based on [v8dasm](https://github.com/noelex/v8dasm) and <https://github.com/v8/v8/tree/10.6.194.26>.
-
-The disassembler can be built to be compatible with either Node or Electron (depending on how the `.jsc` file was generated).
-
-The v8 version of a `.jsc` file can be found using <https://j4k0xb.github.io/v8-version-analyzer>, but sometimes Node or Electron create their own custom versions. In that case just choose the closest one.
 
 1. Check out your v8 version: <https://v8.dev/docs/source-code>
 2. Apply the [patch](./Disassembler/v8.patch):
@@ -68,7 +77,7 @@ The v8 version of a `.jsc` file can be found using <https://j4k0xb.github.io/v8-
     git apply -3 v8.patch
     ```
 
-    And resolve any conflicts that may occur in different versions.
+    It's expected that a few merge conflicts occur for different versions, resolve them manually.
 
 3. Create a build configuration:
 
