@@ -111,16 +111,14 @@ Guide/disassembler/patch based on [v8dasm](https://github.com/noelex/v8dasm) and
 
 6. Compile the [disassembler](./Disassembler/v8dasm.cpp):
 
-    (For very old v8 versions, [v8dasm_legacy.cpp](./Disassembler/v8dasm_legacy.cpp) might be needed instead).
-
     - For **Node**:
 
         ```sh
-        clang++ v8dasm.cpp -g -std=c++17 -Iinclude -Lout.gn/x64.release/obj -lv8_libbase -lv8_libplatform -lv8_monolith -o v8dasm
+        clang++ v8dasm.cpp -g -std=c++20 -Iinclude -Lout.gn/x64.release/obj -lv8_libbase -lv8_libplatform -lv8_monolith -o v8dasm
         ```
 
     - For **Electron**:
 
         ```sh
-        clang++ v8dasm.cpp -g -std=c++17 -Iinclude -Lout.gn/x64.release/obj -lv8_libbase -lv8_libplatform -lv8_monolith -o v8dasm -DV8_COMPRESS_POINTERS
+        clang++ v8dasm.cpp -g -std=c++20 -Iinclude -Lout.gn/x64.release/obj -lv8_libbase -lv8_libplatform -lv8_monolith -o v8dasm -DV8_COMPRESS_POINTERS -DV8_ENABLE_SANDBOX
         ```
