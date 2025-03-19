@@ -61,10 +61,10 @@ The v8 version of a `.jsc` file can be found using one of the following methods:
 - VersionDetector.exe
 - If the Node.js binary is available: `./path_to_node -p process.versions.v8`
 - If the Electron binary is available:
-  - Linux/Mac: `ELECTRON_RUN_AS_NODE=1 ./path_to_electron_app -p process.versions.node`
-  - Windows: `set ELECTRON_RUN_AS_NODE=1 && path_to_electron_app -p process.versions.node`
-- If the electron version is known: Get the `node` field from <https://releases.electronjs.org/releases.json> (note: ignore `v8` field as it's for Chromium)
-- If the node version is known: Get `v8` field from <https://nodejs.org/dist/index.json>
+  - Linux/Mac: `ELECTRON_RUN_AS_NODE=1 ./path_to_electron_app -p process.versions.v8`
+  - Windows: `set ELECTRON_RUN_AS_NODE=1 && path_to_electron_app -p process.versions.v8`
+- If the Electron version is known: Find the `v8` field in <https://releases.electronjs.org/releases.json>
+- If the Node version is known: Find the `v8` field in <https://nodejs.org/dist/index.json>
 
 Sometimes there isn't a matching v8 version because it has been edited. In this case, just select the closest one before.
 
