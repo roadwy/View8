@@ -82,7 +82,7 @@ Guide/disassembler/patch based on [v8dasm](https://github.com/noelex/v8dasm) and
 3. Create a build configuration:
 
     ```sh
-    ./tools/dev/v8gen.py x64.release
+    python tools/dev/v8gen.py x64.release
     ```
 
 4. Edit the build flags in `out.gn/x64.release/args.gn`:
