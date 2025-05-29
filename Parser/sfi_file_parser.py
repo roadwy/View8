@@ -63,8 +63,11 @@ def parse_bytecode(line, lines):
     return code_list
 
 def unescape_x_escape_to_unicode(value: str):
-    value = value.replace(r'\x', r'\u').encode().decode('unicode_escape')
-    return value
+    try:
+        value = value.replace(r'\x', r'\u').encode().decode('unicode_escape')
+        return value
+    except UnicodeDecodeError as e:
+        return value
 
 def parse_const_line(lines, func_name):
     var_line = next(lines)
